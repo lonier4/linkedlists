@@ -1,0 +1,62 @@
+class LinkedList
+    attr_accessor :value, :next_node
+  
+    def initialize(value, next_node=nil)
+      @value = value
+      @next_node = next_node
+    end
+  end
+
+  def print_values(list_node)
+    if list_node
+      print "#{list_node.value} --> "
+      print_values(list_node.next_node)
+    else
+      print "nil\n"
+      return
+    end
+  end
+  
+class Stack
+    attr_reader :data
+
+    def initialize
+        @data = nil
+    end
+
+    def push(value)
+         @data = LinkedList.new(value, @data)
+    end
+
+    def pop
+       value = @data.value
+       @data = @data.next_node
+       return value.to_s
+    end
+
+
+    def reverse_list  
+      output = ""
+      while @data != nil
+        output += self.pop + " --> "
+      end
+      return output + "nil"
+    end
+end
+
+value = Stack.new
+value.push(12)
+value.push(99)
+value.push(37)
+  
+node1 = LinkedList.new(37)
+node2 = LinkedList.new(99, node1)
+node3 = LinkedList.new(12, node2)
+
+print_values(node3)
+puts "-------"
+puts value.reverse_list
+
+
+
+
